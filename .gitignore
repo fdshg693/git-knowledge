@@ -1,4 +1,6 @@
 *concepts.md
 .DS_Store
 memo.md
+# log files
 *.log
+**/*.log
