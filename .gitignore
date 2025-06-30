@@ -4,3 +4,4 @@ memo.md
 # log files
 *.log
 **/*.log
+logs/
