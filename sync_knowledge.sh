@@ -7,6 +7,7 @@
 # Usage:
 #   ./sync_knowledge.sh [commit_message]
 #   ./sync_knowledge.sh --restore-deleted  # Restore deleted files from last commit
+#   ./sync_knowledge.sh --allow-deletions  # Allow deletions to be committed to remote
 #   ./sync_knowledge.sh --help             # Show help message
 
 set -e  # Exit on any error
@@ -65,6 +66,7 @@ show_help() {
     echo "Usage:"
     echo "  $0 [commit_message]           # Sync repository with optional custom commit message"
     echo "  $0 --restore-deleted          # Restore deleted files from last commit"
+    echo "  $0 --allow-deletions          # Allow deletions to be committed to remote"
     echo "  $0 --help                     # Show this help message"
     echo ""
     echo "This script adds new files and modifications to the repository"
@@ -92,12 +94,16 @@ restore_deleted_files() {
 }
 
 # Check command line arguments
+ALLOW_DELETIONS=false
 if [ "$1" = "--help" ]; then
     show_help
     exit 0
 elif [ "$1" = "--restore-deleted" ]; then
     restore_deleted_files
     exit 0
+elif [ "$1" = "--allow-deletions" ]; then
+    ALLOW_DELETIONS=true
+    shift  # Remove the --allow-deletions argument so $1 becomes the commit message
 fi
 
 # Function to log plain text (for file lists and detailed output)
@@ -142,15 +148,24 @@ log_text "$git_status"
 # Add new files and modifications (but not deletions)
 print_status "Adding new files and modifications..."
 
-# First, reset any deleted files to prevent them from being committed
+# Check for deleted files but don't restore them automatically
 deleted_files=$(git diff --name-only --diff-filter=D)
 if [ ! -z "$deleted_files" ]; then
-    print_warning "Deleted files detected - preventing them from being committed to remote:"
-    echo "$deleted_files" | while read file; do
-        log_text "  - $file (restored to prevent remote deletion)"
-        # Restore the deleted file from the last commit to prevent deletion from being staged
-        git checkout HEAD -- "$file" 2>/dev/null || true
-    done
+    if [ "$ALLOW_DELETIONS" = "true" ]; then
+        print_warning "Deleted files detected (will be committed to remote):"
+        echo "$deleted_files" | while read file; do
+            log_text "  - $file (will be deleted from remote)"
+        done
+        # Stage the deletions
+        echo "$deleted_files" | while read file; do
+            git add "$file"
+        done
+    else
+        print_warning "Deleted files detected (will be ignored, not committed to remote):"
+        echo "$deleted_files" | while read file; do
+            log_text "  - $file (deleted locally, will not be committed)"
+        done
+    fi
 fi
 
 # Add all new files (untracked)
