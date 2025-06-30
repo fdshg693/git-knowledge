@@ -3,6 +3,11 @@
 # Git Knowledge Repository Sync Script
 # This script adds new files and modifications to the repository
 # while preserving deletions locally (not pushing deletions to remote)
+#
+# Usage:
+#   ./sync_knowledge.sh [commit_message]
+#   ./sync_knowledge.sh --restore-deleted  # Restore deleted files from last commit
+#   ./sync_knowledge.sh --help             # Show help message
 
 set -e  # Exit on any error
 
@@ -53,6 +58,48 @@ print_error() {
     log_and_print "ERROR" "$RED" "$1" "true"
 }
 
+# Function to show help
+show_help() {
+    echo "Git Knowledge Repository Sync Script"
+    echo ""
+    echo "Usage:"
+    echo "  $0 [commit_message]           # Sync repository with optional custom commit message"
+    echo "  $0 --restore-deleted          # Restore deleted files from last commit"
+    echo "  $0 --help                     # Show this help message"
+    echo ""
+    echo "This script adds new files and modifications to the repository"
+    echo "while preserving deletions locally (not pushing deletions to remote)."
+}
+
+# Function to restore deleted files
+restore_deleted_files() {
+    print_status "Checking for deleted files to restore..."
+    
+    deleted_files=$(git diff --name-only --diff-filter=D)
+    if [ -z "$deleted_files" ]; then
+        print_status "No deleted files found."
+        return 0
+    fi
+    
+    print_status "Restoring deleted files from last commit:"
+    echo "$deleted_files" | while read file; do
+        log_text "  Restoring: $file"
+        git checkout HEAD -- "$file"
+        echo "  ✓ $file"
+    done
+    
+    print_success "Deleted files have been restored!"
+}
+
+# Check command line arguments
+if [ "$1" = "--help" ]; then
+    show_help
+    exit 0
+elif [ "$1" = "--restore-deleted" ]; then
+    restore_deleted_files
+    exit 0
+fi
+
 # Function to log plain text (for file lists and detailed output)
 log_text() {
     local text="$1"
@@ -95,6 +142,17 @@ log_text "$git_status"
 # Add new files and modifications (but not deletions)
 print_status "Adding new files and modifications..."
 
+# First, reset any deleted files to prevent them from being committed
+deleted_files=$(git diff --name-only --diff-filter=D)
+if [ ! -z "$deleted_files" ]; then
+    print_warning "Deleted files detected - preventing them from being committed to remote:"
+    echo "$deleted_files" | while read file; do
+        log_text "  - $file (restored to prevent remote deletion)"
+        # Restore the deleted file from the last commit to prevent deletion from being staged
+        git checkout HEAD -- "$file" 2>/dev/null || true
+    done
+fi
+
 # Add all new files (untracked)
 new_files=$(git ls-files --others --exclude-standard)
 if [ ! -z "$new_files" ]; then
@@ -105,7 +163,7 @@ if [ ! -z "$new_files" ]; then
     done
 fi
 
-# Add all modified files (but not deleted ones)
+# Add all modified files (but explicitly exclude any deletions)
 modified_files=$(git diff --name-only --diff-filter=M)
 if [ ! -z "$modified_files" ]; then
     print_status "Adding modified files:"
@@ -115,12 +173,15 @@ if [ ! -z "$modified_files" ]; then
     done
 fi
 
-# Check for deleted files and warn about them
-deleted_files=$(git diff --name-only --diff-filter=D)
-if [ ! -z "$deleted_files" ]; then
-    print_warning "Deleted files detected (will NOT be removed from remote):"
-    echo "$deleted_files" | while read file; do
-        log_text "  - $file"
+# Double-check: unstage any deletions that might have been accidentally staged
+staged_deletions=$(git diff --staged --name-only --diff-filter=D)
+if [ ! -z "$staged_deletions" ]; then
+    print_warning "Unstaging deleted files to prevent remote deletion:"
+    echo "$staged_deletions" | while read file; do
+        log_text "  Unstaging deletion: $file"
+        git reset HEAD -- "$file" 2>/dev/null || true
+        # Restore the file again if it was deleted
+        git checkout HEAD -- "$file" 2>/dev/null || true
     done
 fi
 
