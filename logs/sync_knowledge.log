@@ -1,0 +1,187 @@
+[2025-06-30 22:37:13] [INFO] Starting git knowledge sync...
+[2025-06-30 22:37:13] === Git Knowledge Sync Session Started ===
+[2025-06-30 22:37:35] [INFO] Starting git knowledge sync...
+[2025-06-30 22:37:35] === Git Knowledge Sync Session Started ===
+[2025-06-30 22:40:28] [INFO] Starting git knowledge sync...
+[2025-06-30 22:40:28] === Git Knowledge Sync Session Started ===
+[2025-06-30 22:40:28] [INFO] Current branch: main
+[2025-06-30 22:40:28] [INFO] Changes detected:
+[2025-06-30 22:40:28] A  .github/prompts/git.prompt.md
+AM .gitignore
+AM logs/sync_knowledge.log
+A  memo.md
+A  python_learn/aiohappyeyeballs/README.md
+A  python_learn/aiohappyeyeballs/examples/advanced_integration.py
+A  python_learn/aiohappyeyeballs/examples/basic_usage.py
+A  python_learn/aiohappyeyeballs/examples/correct_usage.py
+A  python_learn/aiohappyeyeballs/examples/practical_patterns.py
+A  python_learn/aiohappyeyeballs/output/aiohappyeyeballs_guide.md
+A  python_learn/pydantic/README.md
+A  python_learn/pydantic/examples/library_comparison.py
+A  python_learn/pydantic/examples/practical_patterns.py
+A  python_learn/pydantic/output/pydantic_comprehensive_guide.md
+A  python_learn/pytest/examples/advanced_integration.py
+A  python_learn/pytest/examples/practical_patterns.py
+A  python_learn/pytest/output/next_step.md
+A  python_learn/pytest/output/pytest_comprehensive_guide.md
+A  python_learn/ruff/examples/advanced_integration.py
+A  python_learn/ruff/examples/basic_usage.py
+A  python_learn/ruff/output/ruff_comprehensive_guide.md
+A  python_learn/uv/README.md
+A  python_learn/uv/examples/advanced_integration.py
+A  python_learn/uv/examples/basic_usage.py
+A  python_learn/uv/examples/project_templates.py
+A  python_learn/uv/output/migration_guide.md
+A  python_learn/uv/output/next_step.md
+A  python_learn/uv/output/uv_comprehensive_guide.md
+AM sync_knowledge.sh
+[2025-06-30 22:40:28] [INFO] Adding new files and modifications...
+[2025-06-30 22:40:28] [INFO] Adding modified files:
+[2025-06-30 22:40:28]   ~ .gitignore
+[2025-06-30 22:40:28]   ~ logs/sync_knowledge.log
+[2025-06-30 22:40:28]   ~ sync_knowledge.sh
+[2025-06-30 22:40:28] [INFO] Staged files for commit:
+[2025-06-30 22:40:28]   .github/prompts/git.prompt.md
+[2025-06-30 22:40:28]   .gitignore
+[2025-06-30 22:40:28]   logs/sync_knowledge.log
+[2025-06-30 22:40:28]   memo.md
+[2025-06-30 22:40:28]   python_learn/aiohappyeyeballs/README.md
+[2025-06-30 22:40:28]   python_learn/aiohappyeyeballs/examples/advanced_integration.py
+[2025-06-30 22:40:28]   python_learn/aiohappyeyeballs/examples/basic_usage.py
+[2025-06-30 22:40:28]   python_learn/aiohappyeyeballs/examples/correct_usage.py
+[2025-06-30 22:40:28]   python_learn/aiohappyeyeballs/examples/practical_patterns.py
+[2025-06-30 22:40:28]   python_learn/aiohappyeyeballs/output/aiohappyeyeballs_guide.md
+[2025-06-30 22:40:28]   python_learn/pydantic/README.md
+[2025-06-30 22:40:28]   python_learn/pydantic/examples/library_comparison.py
+[2025-06-30 22:40:28]   python_learn/pydantic/examples/practical_patterns.py
+[2025-06-30 22:40:28]   python_learn/pydantic/output/pydantic_comprehensive_guide.md
+[2025-06-30 22:40:28]   python_learn/pytest/examples/advanced_integration.py
+[2025-06-30 22:40:28]   python_learn/pytest/examples/practical_patterns.py
+[2025-06-30 22:40:28]   python_learn/pytest/output/next_step.md
+[2025-06-30 22:40:28]   python_learn/pytest/output/pytest_comprehensive_guide.md
+[2025-06-30 22:40:28]   python_learn/ruff/examples/advanced_integration.py
+[2025-06-30 22:40:28]   python_learn/ruff/examples/basic_usage.py
+[2025-06-30 22:40:28]   python_learn/ruff/output/ruff_comprehensive_guide.md
+[2025-06-30 22:40:28]   python_learn/uv/README.md
+[2025-06-30 22:40:28]   python_learn/uv/examples/advanced_integration.py
+[2025-06-30 22:40:28]   python_learn/uv/examples/basic_usage.py
+[2025-06-30 22:40:28]   python_learn/uv/examples/project_templates.py
+[2025-06-30 22:40:28]   python_learn/uv/output/migration_guide.md
+[2025-06-30 22:40:28]   python_learn/uv/output/next_step.md
+[2025-06-30 22:40:28]   python_learn/uv/output/uv_comprehensive_guide.md
+[2025-06-30 22:40:28]   sync_knowledge.sh
+[2025-06-30 22:40:28] [INFO] Committing changes with message: 'Update knowledge repository - 2025-06-30 22:40:28'
+[2025-06-30 22:40:28] [INFO] Pushing to remote repository...
+[2025-06-30 22:40:30] [SUCCESS] Successfully pushed changes to remote repository!
+[2025-06-30 22:40:30] [SUCCESS] Git knowledge sync completed successfully!
+[2025-06-30 22:40:30] === Git Knowledge Sync Session Completed Successfully ===
+[2025-06-30 22:50:04] [INFO] Starting git knowledge sync...
+[2025-06-30 22:50:04] === Git Knowledge Sync Session Started ===
+[2025-06-30 22:50:04] [INFO] Current branch: main
+[2025-06-30 22:50:04] [INFO] Changes detected:
+[2025-06-30 22:50:04] A  .github/prompts/git.prompt.md
+A  .gitignore
+AM logs/sync_knowledge.log
+A  python_learn/aiohappyeyeballs/README.md
+A  python_learn/aiohappyeyeballs/examples/advanced_integration.py
+A  python_learn/aiohappyeyeballs/examples/basic_usage.py
+A  python_learn/aiohappyeyeballs/examples/correct_usage.py
+A  python_learn/aiohappyeyeballs/examples/practical_patterns.py
+A  python_learn/aiohappyeyeballs/output/aiohappyeyeballs_guide.md
+A  python_learn/pydantic/README.md
+A  python_learn/pydantic/examples/library_comparison.py
+A  python_learn/pydantic/examples/practical_patterns.py
+A  python_learn/pydantic/output/pydantic_comprehensive_guide.md
+A  python_learn/pytest/examples/advanced_integration.py
+A  python_learn/pytest/examples/practical_patterns.py
+A  python_learn/pytest/output/next_step.md
+A  python_learn/pytest/output/pytest_comprehensive_guide.md
+A  python_learn/ruff/examples/advanced_integration.py
+A  python_learn/ruff/examples/basic_usage.py
+A  python_learn/ruff/output/ruff_comprehensive_guide.md
+A  python_learn/uv/README.md
+A  python_learn/uv/examples/advanced_integration.py
+A  python_learn/uv/examples/basic_usage.py
+A  python_learn/uv/examples/project_templates.py
+A  python_learn/uv/output/migration_guide.md
+A  python_learn/uv/output/next_step.md
+A  python_learn/uv/output/uv_comprehensive_guide.md
+A  sync_knowledge.sh
+[2025-06-30 22:50:04] [INFO] Adding new files and modifications...
+[2025-06-30 22:50:04] [INFO] Adding modified files:
+[2025-06-30 22:50:04]   ~ logs/sync_knowledge.log
+[2025-06-30 22:50:04] [INFO] Staged files for commit:
+[2025-06-30 22:50:04]   .github/prompts/git.prompt.md
+[2025-06-30 22:50:04]   .gitignore
+[2025-06-30 22:50:04]   logs/sync_knowledge.log
+[2025-06-30 22:50:04]   python_learn/aiohappyeyeballs/README.md
+[2025-06-30 22:50:04]   python_learn/aiohappyeyeballs/examples/advanced_integration.py
+[2025-06-30 22:50:04]   python_learn/aiohappyeyeballs/examples/basic_usage.py
+[2025-06-30 22:50:04]   python_learn/aiohappyeyeballs/examples/correct_usage.py
+[2025-06-30 22:50:04]   python_learn/aiohappyeyeballs/examples/practical_patterns.py
+[2025-06-30 22:50:04]   python_learn/aiohappyeyeballs/output/aiohappyeyeballs_guide.md
+[2025-06-30 22:50:04]   python_learn/pydantic/README.md
+[2025-06-30 22:50:04]   python_learn/pydantic/examples/library_comparison.py
+[2025-06-30 22:50:04]   python_learn/pydantic/examples/practical_patterns.py
+[2025-06-30 22:50:04]   python_learn/pydantic/output/pydantic_comprehensive_guide.md
+[2025-06-30 22:50:04]   python_learn/pytest/examples/advanced_integration.py
+[2025-06-30 22:50:04]   python_learn/pytest/examples/practical_patterns.py
+[2025-06-30 22:50:04]   python_learn/pytest/output/next_step.md
+[2025-06-30 22:50:04]   python_learn/pytest/output/pytest_comprehensive_guide.md
+[2025-06-30 22:50:04]   python_learn/ruff/examples/advanced_integration.py
+[2025-06-30 22:50:04]   python_learn/ruff/examples/basic_usage.py
+[2025-06-30 22:50:04]   python_learn/ruff/output/ruff_comprehensive_guide.md
+[2025-06-30 22:50:04]   python_learn/uv/README.md
+[2025-06-30 22:50:04]   python_learn/uv/examples/advanced_integration.py
+[2025-06-30 22:50:04]   python_learn/uv/examples/basic_usage.py
+[2025-06-30 22:50:04]   python_learn/uv/examples/project_templates.py
+[2025-06-30 22:50:04]   python_learn/uv/output/migration_guide.md
+[2025-06-30 22:50:04]   python_learn/uv/output/next_step.md
+[2025-06-30 22:50:04]   python_learn/uv/output/uv_comprehensive_guide.md
+[2025-06-30 22:50:04]   sync_knowledge.sh
+[2025-06-30 22:50:04] [INFO] Committing changes with message: 'Update knowledge repository - 2025-06-30 22:50:04'
+[2025-06-30 22:50:04] [INFO] Pushing to remote repository...
+[2025-06-30 22:50:05] [ERROR] Failed to push to remote repository.
+[2025-06-30 22:50:05] [INFO] You may need to set up the remote repository first:
+[2025-06-30 22:50:05] [INFO] git remote add origin <your-repository-url>
+[2025-06-30 22:54:15] [INFO] Starting git knowledge sync...
+[2025-06-30 22:54:15] === Git Knowledge Sync Session Started ===
+[2025-06-30 22:54:15] [INFO] Current branch: master
+[2025-06-30 22:54:15] [INFO] Changes detected:
+[2025-06-30 22:54:15] ?? .github/
+?? .gitignore
+?? logs/
+?? python_learn/
+?? sync_knowledge.sh
+[2025-06-30 22:54:15] [INFO] Adding new files and modifications...
+[2025-06-30 22:54:15] [INFO] Adding new files:
+[2025-06-30 22:54:15]   + .github/prompts/git.prompt.md
+[2025-06-30 22:54:15]   + .gitignore
+[2025-06-30 22:54:15]   + logs/sync_knowledge.log
+[2025-06-30 22:54:15]   + python_learn/aiohappyeyeballs/README.md
+[2025-06-30 22:54:16]   + python_learn/aiohappyeyeballs/examples/advanced_integration.py
+[2025-06-30 22:54:16]   + python_learn/aiohappyeyeballs/examples/basic_usage.py
+[2025-06-30 22:54:16]   + python_learn/aiohappyeyeballs/examples/correct_usage.py
+[2025-06-30 22:54:16]   + python_learn/aiohappyeyeballs/examples/practical_patterns.py
+[2025-06-30 22:54:16]   + python_learn/aiohappyeyeballs/output/aiohappyeyeballs_guide.md
+[2025-06-30 22:54:16]   + python_learn/pydantic/README.md
+[2025-06-30 22:54:16]   + python_learn/pydantic/examples/library_comparison.py
+[2025-06-30 22:54:16]   + python_learn/pydantic/examples/practical_patterns.py
+[2025-06-30 22:54:16]   + python_learn/pydantic/output/pydantic_comprehensive_guide.md
+[2025-06-30 22:54:16]   + python_learn/pytest/examples/advanced_integration.py
+[2025-06-30 22:54:16]   + python_learn/pytest/examples/practical_patterns.py
+[2025-06-30 22:54:16]   + python_learn/pytest/output/next_step.md
+[2025-06-30 22:54:16]   + python_learn/pytest/output/pytest_comprehensive_guide.md
+[2025-06-30 22:54:16]   + python_learn/ruff/examples/advanced_integration.py
+[2025-06-30 22:54:16]   + python_learn/ruff/examples/basic_usage.py
+[2025-06-30 22:54:16]   + python_learn/ruff/output/ruff_comprehensive_guide.md
+[2025-06-30 22:54:16]   + python_learn/uv/README.md
+[2025-06-30 22:54:16]   + python_learn/uv/examples/advanced_integration.py
+[2025-06-30 22:54:16]   + python_learn/uv/examples/basic_usage.py
+[2025-06-30 22:54:16]   + python_learn/uv/examples/project_templates.py
+[2025-06-30 22:54:16]   + python_learn/uv/output/migration_guide.md
+[2025-06-30 22:54:16]   + python_learn/uv/output/next_step.md
+[2025-06-30 22:54:16]   + python_learn/uv/output/uv_comprehensive_guide.md
+[2025-06-30 22:54:16]   + sync_knowledge.sh
+[2025-06-30 22:54:16] [INFO] Adding modified files:
+[2025-06-30 22:54:16]   ~ logs/sync_knowledge.log
