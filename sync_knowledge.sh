@@ -1,13 +1,12 @@
 #!/bin/bash
 
 # Git Knowledge Repository Sync Script
-# This script adds new files and modifications to the repository
-# while preserving deletions locally (not pushing deletions to remote)
+# This script adds only new files to the repository
+# Modifications and deletions are ignored and not pushed to remote
 #
 # Usage:
 #   ./sync_knowledge.sh [commit_message]
 #   ./sync_knowledge.sh --restore-deleted  # Restore deleted files from last commit
-#   ./sync_knowledge.sh --allow-deletions  # Allow deletions to be committed to remote
 #   ./sync_knowledge.sh --help             # Show help message
 
 set -e  # Exit on any error
@@ -66,11 +65,10 @@ show_help() {
     echo "Usage:"
     echo "  $0 [commit_message]           # Sync repository with optional custom commit message"
     echo "  $0 --restore-deleted          # Restore deleted files from last commit"
-    echo "  $0 --allow-deletions          # Allow deletions to be committed to remote"
     echo "  $0 --help                     # Show this help message"
     echo ""
-    echo "This script adds new files and modifications to the repository"
-    echo "while preserving deletions locally (not pushing deletions to remote)."
+    echo "This script adds only new files to the repository."
+    echo "Modifications and deletions are ignored and not pushed to remote."
 }
 
 # Function to restore deleted files
@@ -94,16 +92,12 @@ restore_deleted_files() {
 }
 
 # Check command line arguments
-ALLOW_DELETIONS=false
 if [ "$1" = "--help" ]; then
     show_help
     exit 0
 elif [ "$1" = "--restore-deleted" ]; then
     restore_deleted_files
     exit 0
-elif [ "$1" = "--allow-deletions" ]; then
-    ALLOW_DELETIONS=true
-    shift  # Remove the --allow-deletions argument so $1 becomes the commit message
 fi
 
 # Function to log plain text (for file lists and detailed output)
@@ -145,76 +139,58 @@ fi
 print_status "Changes detected:"
 log_text "$git_status"
 
-# Add new files and modifications (but not deletions)
-print_status "Adding new files and modifications..."
+# Add only new files (ignore modifications and deletions)
+print_status "Adding only new files..."
 
-# Check for deleted files but don't restore them automatically
+# Check for deleted files and inform user (but do nothing)
 deleted_files=$(git diff --name-only --diff-filter=D)
 if [ ! -z "$deleted_files" ]; then
-    if [ "$ALLOW_DELETIONS" = "true" ]; then
-        print_warning "Deleted files detected (will be committed to remote):"
-        echo "$deleted_files" | while read file; do
-            log_text "  - $file (will be deleted from remote)"
-        done
-        # Stage the deletions
-        echo "$deleted_files" | while read file; do
-            git add "$file"
-        done
-    else
-        print_warning "Deleted files detected (will be ignored, not committed to remote):"
-        echo "$deleted_files" | while read file; do
-            log_text "  - $file (deleted locally, will not be committed)"
-        done
-    fi
+    print_warning "Deleted files detected (will be ignored):"
+    echo "$deleted_files" | while read file; do
+        log_text "  - $file (deleted locally, ignoring)"
+        echo "  - $file"
+    done
 fi
 
-# Add all new files (untracked)
+# Check for modified files and inform user (but do nothing)
+modified_files=$(git diff --name-only --diff-filter=M)
+if [ ! -z "$modified_files" ]; then
+    print_warning "Modified files detected (will be ignored):"
+    echo "$modified_files" | while read file; do
+        log_text "  ~ $file (modified locally, ignoring)"
+        echo "  ~ $file"
+    done
+fi
+
+# Add only new files (untracked)
 new_files=$(git ls-files --others --exclude-standard)
 if [ ! -z "$new_files" ]; then
     print_status "Adding new files:"
     echo "$new_files" | while read file; do
         log_text "  + $file"
+        echo "  + $file"
         git add "$file"
     done
+else
+    print_status "No new files to add."
 fi
 
-# Add all modified files (but explicitly exclude any deletions)
-modified_files=$(git diff --name-only --diff-filter=M)
-if [ ! -z "$modified_files" ]; then
-    print_status "Adding modified files:"
-    echo "$modified_files" | while read file; do
-        log_text "  ~ $file"
-        git add "$file"
-    done
-fi
-
-# Double-check: unstage any deletions that might have been accidentally staged
-staged_deletions=$(git diff --staged --name-only --diff-filter=D)
-if [ ! -z "$staged_deletions" ]; then
-    print_warning "Unstaging deleted files to prevent remote deletion:"
-    echo "$staged_deletions" | while read file; do
-        log_text "  Unstaging deletion: $file"
-        git reset HEAD -- "$file" 2>/dev/null || true
-        # Restore the file again if it was deleted
-        git checkout HEAD -- "$file" 2>/dev/null || true
-    done
-fi
-
-# Check if there are staged changes
+# Check if there are staged changes (should only be new files)
 staged_changes=$(git diff --staged --name-only)
 if [ -z "$staged_changes" ]; then
-    print_status "No changes to commit."
+    print_status "No new files to commit."
     exit 0
 fi
 
-print_status "Staged files for commit:"
+print_status "New files staged for commit:"
 echo "$staged_changes" | while read file; do
-    log_text "  $file"
+    log_text "  + $file"
+    echo "  + $file"
 done
 
 # Create commit message
 timestamp=$(date '+%Y-%m-%d %H:%M:%S')
-commit_message="Update knowledge repository - $timestamp"
+commit_message="Add new files to knowledge repository - $timestamp"
 
 # Allow custom commit message
 if [ ! -z "$1" ]; then
@@ -227,7 +203,7 @@ git commit -m "$commit_message"
 # Push to remote
 print_status "Pushing to remote repository..."
 if git push origin "$CURRENT_BRANCH"; then
-    print_success "Successfully pushed changes to remote repository!"
+    print_success "Successfully pushed new files to remote repository!"
 else
     print_error "Failed to push to remote repository."
     print_status "You may need to set up the remote repository first:"
