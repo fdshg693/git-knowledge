@@ -1,0 +1,18 @@
+{
+    "keep_files": [
+        ".gitignore",
+        "cleanup_config.json",
+        "cleanup_directories.sh",
+        "file_cleanup.py",
+        "memo.md",
+        "NEXT.md",
+        "sync_knowledge.sh",
+        "user_learning.md"
+    ],
+    "keep_dirs": [
+        ".git/",
+        ".github/",
+        "backup/",
+        "logs/"
+    ]
+}
