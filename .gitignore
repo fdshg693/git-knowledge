@@ -1,9 +1,13 @@
 *concepts.md
 .DS_Store
+
+# memo
 memo.md
+NEXT.md
 # log files
 *.log
 **/*.log
 logs/
 # backup files
 backup/
+
