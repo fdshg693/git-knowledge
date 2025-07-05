@@ -88,6 +88,7 @@ class GitAutoPush:
     def get_modified_files(self):
         """
         変更されたファイルのリストを取得する
+        ステージングエリアにある新規ファイルと変更されたファイルを含む
 
         Returns:
             list: 変更されたファイルのリスト
@@ -99,10 +100,14 @@ class GitAutoPush:
 
         modified_files = []
         for line in output.split("\n"):
-            if line.startswith(" M") or line.startswith("M "):
-                # M は修正されたファイルを示す
-                filename = line[3:].strip()
-                modified_files.append(filename)
+            if line.strip():
+                line = line.strip()
+                status = line.split(" ", 1)[0].strip()
+                filename = line.split(" ", 1)[1].strip()
+                # M: 修正されたファイル、A: 新規追加されたファイル（ステージング済み）
+                # AM: 新規追加後に修正されたファイル、MM: 修正後にさらに修正されたファイル
+                if any(char in status for char in ["M", "A"]):
+                    modified_files.append(filename)
 
         return modified_files
 
@@ -211,7 +216,10 @@ class GitAutoPush:
         # 変更されたファイルも含める場合
         if include_modified:
             modified_files = self.get_modified_files()
-            files_to_add.extend(modified_files)
+            # 重複を避けるため、既にリストにないファイルのみを追加
+            for file in modified_files:
+                if file not in files_to_add:
+                    files_to_add.append(file)
 
         if not files_to_add:
             self.logger.info("No new or modified files to process")

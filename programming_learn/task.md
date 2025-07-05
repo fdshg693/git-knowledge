@@ -1,6 +1,12 @@
-**Concept**: Service Worker API
+**Concept**: go-swagger
 **Audience**: Intermediate developers  
-**Language**: JavaScript
-**Context**: Web development
+**Language**: Go
+**Context**: None
 
-I want to understand how Service Worker API works, its lifecycle, and how to implement caching strategies for offline support. Please include practical examples for caching static assets and handling network requests.
+## Task
+- Explain the purpose of go-swagger and its role in API development.
+- Provide a step-by-step guide on how to install and set up go-swagger in a Go project.
+- Include examples of how to define API specifications using Swagger annotations in Go code.
+- Demonstrate how to generate server and client code from Swagger specifications.
+- Discuss best practices for using go-swagger in real-world projects.
+- Compare go-swagger with other API development tools in the Go ecosystem.
