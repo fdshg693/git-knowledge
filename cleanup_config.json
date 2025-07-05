@@ -4,9 +4,11 @@
         "cleanup_config.json",
         "cleanup_directories.sh",
         "file_cleanup.py",
+        "git_auto_push.py",
         "memo.md",
         "NEXT.md",
         "sync_knowledge.sh",
+        "README_git_auto_push.md",
         "user_learning.md"
     ],
     "keep_dirs": [
